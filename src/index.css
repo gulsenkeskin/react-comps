@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* butonun svg yani icon bi child'ı varsa  */
+button > svg {
+  margin-right: 5px;
+}
