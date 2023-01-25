@@ -32,7 +32,7 @@ function Button({
   );
 
   return (
-    <button rest className={classes}>
+    <button {...rest} className={classes}>
       {children}
     </button>
   );
