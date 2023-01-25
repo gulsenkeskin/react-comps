@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import React from "react";
 function Button({ children, primary, secondary, success, warning, danger }) {
   return <button>{children}</button>;
 }
