@@ -2,10 +2,15 @@ import { useState } from "react";
 import { GoChevronDown, GoChevronLeft } from "react-icons/go";
 
 function Accordion({ items }) {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  //uygulama açıldığunda tüm panellerin kapalı olması için initial state -1
+  const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (nextIndex) => {
-    setExpandedIndex(nextIndex);
+    if (expandedIndex === nextIndex) {
+      setExpandedIndex(-1);
+    } else {
+      setExpandedIndex(nextIndex);
+    }
   };
 
   const renderedItems = items.map((item, index) => {
