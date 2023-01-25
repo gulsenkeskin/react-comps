@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import classnames from "classnames";
 import React from "react";
 function Button({ children, primary, secondary, success, warning, danger }) {
   return (
@@ -8,7 +8,7 @@ function Button({ children, primary, secondary, success, warning, danger }) {
   );
 }
 
-Button.prototype = {
+Button.propTypes = {
   chackVariationValue: ({ primary, secondary, success, warning, danger }) => {
     //true olan durumların sayısını verir : birden fazla aynı stil için özlellik eklenmemesi için
     const count =
