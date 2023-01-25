@@ -1,18 +1,25 @@
-import React from "react";
-import Accordion from "./components/Accordion";
+import React, { useState } from "react";
+import Dropdown from "./components/Dropdown";
 
 function App() {
-  const items = [
-    { id: 1, label: "Meyve", content: "elma,armut,portakal" },
-    { id: 2, label: "Sebze", content: "enginar,karnabahar,brokoli" },
-    {
-      id: 3,
-      label: "Unlu mamül",
-      content: "kurabiye,kek,ekmek,simit",
-    },
-  ];
+  const [selection, setSelection] = useState(null);
 
-  return <Accordion items={items}></Accordion>;
+  const handleSelect = (option) => {
+    setSelection(option);
+  };
+
+  const options = [
+    { label: "Red", value: "red" },
+    { label: "Green", value: "green" },
+    { label: "Blue", value: "blue" },
+  ];
+  return (
+    <Dropdown
+      options={options}
+      selection={selection}
+      onSelect={handleSelect}
+    ></Dropdown>
+  );
 }
 
 export default App;
