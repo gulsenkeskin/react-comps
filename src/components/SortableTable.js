@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Table from "./Table";
-import { GoArrowSmallDown, GoArrowSmallUp } from "react-icons/go";
+import {
+  TiArrowSortedDown,
+  TiArrowSortedUp,
+  TiArrowUnsorted,
+} from "react-icons/ti";
 
 function SortableTable(props) {
   const [sortOrder, setSortOrder] = useState(null);
@@ -88,29 +92,15 @@ function SortableTable(props) {
 
 function getIcons(label, sortBy, sortOrder) {
   if (label !== sortBy) {
-    return (
-      <div>
-        <GoArrowSmallUp></GoArrowSmallUp>
-        <GoArrowSmallDown></GoArrowSmallDown>
-      </div>
-    );
+    return <TiArrowUnsorted></TiArrowUnsorted>;
   }
 
   if (sortOrder === null) {
-    return (
-      <div>
-        <GoArrowSmallUp></GoArrowSmallUp>
-        <GoArrowSmallDown></GoArrowSmallDown>
-      </div>
-    );
+    return <TiArrowUnsorted></TiArrowUnsorted>;
   } else if (sortOrder === "asc") {
-    <div>
-      <GoArrowSmallUp></GoArrowSmallUp>
-    </div>;
+    return <TiArrowSortedUp></TiArrowSortedUp>;
   } else if (sortOrder === "desc") {
-    <div>
-      <GoArrowSmallDown></GoArrowSmallDown>
-    </div>;
+    return <TiArrowSortedDown></TiArrowSortedDown>;
   }
 }
 
