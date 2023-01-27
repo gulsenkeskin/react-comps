@@ -7,13 +7,13 @@ function useCounter(initialCount) {
     console.log(count);
   }, [count]);
 
-  const Increment = () => {
+  const increment = () => {
     setCount(count + 1);
   };
 
   return {
     count,
-    Increment,
+    increment,
   };
 }
 
