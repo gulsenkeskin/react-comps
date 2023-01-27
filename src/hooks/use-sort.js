@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-function setSortColumn(data, config) {
+function useSort(data, config) {
   const [sortOrder, setSortOrder] = useState(null);
   const [sortBy, setSortBy] = useState(null);
 
-  const handleClick = (label) => {
+  const setSortColumn = (label) => {
     if (sortBy && label !== sortBy) {
       setSortBy("asc");
       setSortBy(label);
@@ -61,8 +61,8 @@ function setSortColumn(data, config) {
     sortOrder,
     sortBy,
     sortedData,
-    handleClick,
+    setSortColumn,
   };
 }
 
-export default setSortColumn;
+export default useSort;

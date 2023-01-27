@@ -10,7 +10,10 @@ import useSort from "../hooks/use-sort";
 function SortableTable(props) {
   const { config, data } = props; //propslardaki config propsunu değişkene atar
 
-  const { sortOrder, sortBy, sortedData, handleClick } = useSort(data, config);
+  const { sortOrder, sortBy, sortedData, setSortColumn } = useSort(
+    data,
+    config
+  );
 
   //orjinal veriyi değiştirmemek için updatedConfig oluştururuz
   const updatedConfig = config.map((column) => {
@@ -22,7 +25,7 @@ function SortableTable(props) {
       header: () => (
         <th
           className="cursor-pointer hover:bg-gray-100"
-          onClick={() => handleClick(column.label)}
+          onClick={() => setSortColumn(column.label)}
         >
           <div className="flex items-center">
             {getIcons(column.label, sortBy, sortOrder)}
