@@ -5,65 +5,12 @@ import {
   TiArrowSortedUp,
   TiArrowUnsorted,
 } from "react-icons/ti";
+import useSort from "../hooks/use-sort";
 
 function SortableTable(props) {
-  const [sortOrder, setSortOrder] = useState(null);
-  const [sortBy, setSortBy] = useState(null);
-
   const { config, data } = props; //propslardaki config propsunu değişkene atar
 
-  const handleClick = (label) => {
-    if (sortBy && label !== sortBy) {
-      setSortBy("asc");
-      setSortBy(label);
-      return;
-    }
-    setSortOrder(() => {
-      if (sortOrder == null) {
-        return "asc";
-      } else if (sortOrder === "asc") {
-        return "desc";
-      } else if (sortOrder === "desc") {
-        return null;
-      }
-    });
-
-    setSortBy((currentSortOrder) => {
-      if (currentSortOrder == null || sortOrder === "asc") {
-        return label;
-      } else if (currentSortOrder === "desc") {
-        return null;
-      }
-    });
-
-    // if (sortOrder == null) {
-    //   setSortOrder("asc");
-    //   setSortBy(label);
-    // } else if (sortOrder === "asc") {
-    //   setSortOrder("desc");
-    //   setSortBy(label);
-    // } else if (sortOrder === "desc") {
-    //   setSortOrder(null);
-    //   setSortBy(null);
-    // }
-  };
-
-  let sortedData = data;
-  if (sortOrder && sortBy) {
-    const { sortValue } = config.find((column) => column.label === sortBy);
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a);
-      const valueB = sortValue(b);
-
-      const reverseOrder = sortOrder === "asc" ? 1 : -1;
-
-      if (typeof valueA === "string") {
-        return valueA.localeCompare(valueB) * reverseOrder;
-      } else {
-        return (valueA - valueB) * reverseOrder;
-      }
-    });
-  }
+  const { sortOrder, sortBy, sortedData, handleClick } = useSort(data, config);
 
   //orjinal veriyi değiştirmemek için updatedConfig oluştururuz
   const updatedConfig = config.map((column) => {
