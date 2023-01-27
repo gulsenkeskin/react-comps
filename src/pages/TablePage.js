@@ -26,6 +26,11 @@ function TablePage() {
       sortValue: (fruit) => fruit.score,
       //  header: () => <th className="bg-red-500">Score</th>, //custom header
     },
+    {
+      label: "Score Squared",
+      render: (fruit) => fruit.score ** 2, //fruit.score *fruit.score ile aynı şey
+      sortValue: (fruit) => fruit.score ** 2,
+    },
   ];
 
   const keyFn = (fruit) => {
@@ -34,6 +39,7 @@ function TablePage() {
 
   return (
     <div>
+      <Table data={data} config={config} keyFn={keyFn}></Table>
       <SortableTable data={data} config={config} keyFn={keyFn}></SortableTable>
     </div>
   );
