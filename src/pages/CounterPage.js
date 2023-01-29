@@ -10,13 +10,22 @@ const SET_VALUE_TO_ADD = "set-value-to-add";
 const reducer = (state, action) => {
   switch (action.type) {
     case INCREMENT_COUNT:
-      return { ...state, count: state.count + 1 };
+      state.count = state.count + 1;
+      return;
+    // return { ...state, count: state.count + 1 };
     case DECREMENT_COUNT:
-      return { ...state, count: state.count - 1 };
+      state.count = state.count - 1;
+      return;
+    // return { ...state, count: state.count - 1 };
     case CHANGE_VALUE_TO_ADD:
-      return { ...state, valueToAdd: action.payload };
+      state.valueToAdd = action.payload;
+      return;
+    //  return { ...state, valueToAdd: action.payload };
     case SET_VALUE_TO_ADD:
-      return { ...state, count: state.count + state.valueToAdd, valueToAdd: 0 };
+      state.count = state.count + state.valueToAdd;
+      state.valueToAdd = action.payload;
+      return;
+    // return { ...state, count: state.count + state.valueToAdd, valueToAdd: 0 };
     default:
       return state;
   }
